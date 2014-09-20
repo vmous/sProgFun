@@ -1,0 +1,1 @@
+Programming exercises and other resources from the Coursera course [Functional Programming Principles in Scala](https://www.coursera.org/course/progfun).

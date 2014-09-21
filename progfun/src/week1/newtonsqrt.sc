@@ -1,23 +1,24 @@
 package week1
 
 object newtonsqrt {
-  println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
-  
+  println("Newton's approximation algorithm to compute the square root of a number!")
+                                                  //> Newton's approximation algorithm to compute the square root of a number!
+
   1 + 3                                           //> res0: Int(4) = 4
-  
+
   def abs(x: Double): Double = {
-  	if (x < 0) -x else x
+    if (x < 0) -x else x
   }                                               //> abs: (x: Double)Double
-  
-  def sqrt(x: Double): Double = sqrtIter(1.0, x)  //> sqrt: (x: Double)Double
-  
-  def sqrtIter(guess: Double, x: Double): Double = {
-  	if (isGoodEnough(guess, x)) guess
-  	else sqrtIter(improve(guess, x), x)
-  }                                               //> sqrtIter: (guess: Double, x: Double)Double
-  
-  def isGoodEnough(guess: Double, x: Double): Boolean = {
-  	/*
+
+  def sqrt(x: Double): Double = {
+
+    def sqrtIter(guess: Double): Double = {
+      if (isGoodEnough(guess)) guess
+      else sqrtIter(improve(guess))
+    }
+
+    def isGoodEnough(guess: Double): Boolean = {
+      /*
   	// We ask here for the absolute difference of the squared guess and x be
   	// smaller than the threshold value ε. That is not very good for very small
   	// numbers because the number we are seeking (the squered value) might be
@@ -29,13 +30,17 @@ object newtonsqrt {
   	// sqrt(1e60)
   	abs(guess * guess - x) < 0.001
   	*/
-  	// We can solve both the above problems by making the test proportional to x.
-  	abs(guess * guess - x) / x < 0.001
-  }                                               //> isGoodEnough: (guess: Double, x: Double)Boolean
-  
-  def improve(guess: Double, x: Double): Double = {
-  	(guess + x / guess) / 2
-  }                                               //> improve: (guess: Double, x: Double)Double
+      // We can solve both the above problems by making the test proportional to x.
+      abs(guess * guess - x) / x < 0.001
+    }
+
+    def improve(guess: Double): Double = {
+      (guess + x / guess) / 2
+    }
+    
+    sqrtIter(1.0)
+    
+  }                                               //> sqrt: (x: Double)Double
   
   //sqrt(0)
   sqrt(2)                                         //> res1: Double = 1.4142156862745097
